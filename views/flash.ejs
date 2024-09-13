@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Message</title>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+
+        #message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #flash-message {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding-inline: 15px;
+            color: white;
+            display: none;
+        }
+
+        #success {
+            background-color: rgb(112, 190, 112);
+        }
+        #error {
+            background-color: rgb(221, 111, 111);
+        }
+
+        #name {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="message">
+        <div id="flash-message">
+            <h3 id="success">
+                <span><%= successMsg %></span>
+            </h3>
+            <h3 id="error">
+                <span><%= errorMsg %></span>
+
+            </h3>
+        </div>
+        <div id="name">
+            <h1>Hello, <%= name %></h1> <!-- Temporarily save message, only one time showing -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let flashMessage = document.getElementById('flash-message');
+            let successMsg = document.getElementById('success');
+            let errorMsg = document.getElementById('error');
+
+            
+            if (flashMessage) {
+                // Check if the flash message has any content
+                if (!flashMessage.textContent.trim()) {
+                    flashMessage.style.display = 'none'; // Hide if no content
+                } else {
+                    flashMessage.style.display = 'block'; // Show if content exists
+                    if(successMsg){
+                        flashMessage.style.backgroundColor = "rgb(112, 190, 112)";
+                    }else if(errorMsg){
+                        flashMessage.style.backgroundColor = "rgb(221, 111, 111)";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
